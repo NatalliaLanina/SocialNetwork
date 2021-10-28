@@ -1,4 +1,6 @@
-import reRenderAll from "../render";
+let reRenderAll = () => {
+  console.log('state');
+}
 
 let state = {
   mainPage: {
@@ -39,7 +41,7 @@ let state = {
 }
 
 
-export let addPost = () => {
+export const addPost = () => {
   let newPost = {
     id: 6,
     message: state.mainPage.newPostText,
@@ -47,27 +49,30 @@ export let addPost = () => {
   }
   state.mainPage.postsData.push(newPost);
   state.mainPage.newPostText = '';
-  reRenderAll(state);
+  reRenderAll();
 }
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
   state.mainPage.newPostText = newText;
-  reRenderAll(state);
+  reRenderAll();
 }
 
 
-export let addMessage = () => {
+export const addMessage = () => {
   let newMessage = {
     id: 6,
     message: state.messagesPage.newMessageText,
   }
   state.messagesPage.messagesData.push(newMessage);
   state.messagesPage.newMessageText = '';
-  reRenderAll(state);
+  reRenderAll();
 }
-export let updateNewMessageText = (newMessage) => {
+export const updateNewMessageText = (newMessage) => {
   state.messagesPage.newMessageText = newMessage;
-  reRenderAll(state);
+  reRenderAll();
 }
 
+export const subscribe = (observer) => {
+   reRenderAll = observer;
+}
 
 export default state;
