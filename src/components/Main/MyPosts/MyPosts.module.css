@@ -1,0 +1,15 @@
+
+.content {
+  padding: 0 2em 2em;
+}
+.content button {
+  margin-bottom: 2em;
+}
+textarea {
+  width: 100%;
+  height: 7em;
+}
+.my_posts {
+  display: flex;
+  flex-direction: column-reverse;
+}
