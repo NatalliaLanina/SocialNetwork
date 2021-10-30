@@ -1,78 +1,88 @@
-let reRenderAll = () => {
-  console.log('state');
-}
+let store = {
+  _state: {
+    mainPage: {
+      postsData: [
+        {id: 1, message: 'Hi, everybody!', likes: 13},
+        {id: 2, message: 'how r u', likes: 5},
+      ],
+      newPostText: ''
+    },
 
-let state = {
-  mainPage: {
-    postsData: [
-      {id: 1, message: 'Hi, everybody!', likes: 13},
-      {id: 2, message: 'how r u', likes: 5},
-    ],
-    newPostText: ''
+    messagesPage: {
+      dialogsData: [
+        {name: 'User 1', id: 1},
+        {name: 'User 2', id: 2},
+        {name: 'User 3', id: 3},
+        {name: 'User 4', id: 4},
+        {name: 'User 5', id: 5},
+      ],
+      messagesData: [
+        {message: 'hi user 2', id: 1},
+        {message: 'Hello, glad to see u User 3', id: 2},
+        {message: 'see u later', id: 3},
+        {message: 'bye', id: 4},
+        {message: 'bye', id: 5},
+      ],
+      newMessageText: '',
+    },
+
+    nav: {
+      navData: [
+        {name: 'Friend 1', id: 1, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
+        {name: 'Friend 2', id: 2, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
+        {name: 'Friend 3', id: 3, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
+        {name: 'Friend 4', id: 4, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
+        {name: 'Friend 5', id: 5, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
+      ],
+    },
   },
 
-  messagesPage: {
-    dialogsData: [
-      {name: 'User 1', id: 1},
-      {name: 'User 2', id: 2},
-      {name: 'User 3', id: 3},
-      {name: 'User 4', id: 4},
-      {name: 'User 5', id: 5},
-    ],
-    messagesData: [
-      {message: 'hi user 2', id: 1},
-      {message: 'Hello, glad to see u User 3', id: 2},
-      {message: 'see u later', id: 3},
-      {message: 'bye', id: 4},
-      {message: 'bye', id: 5},
-    ],
-    newMessageText: '',
+  getState() {
+    return this._state;
   },
 
-  nav: {
-    navData: [
-      {name: 'Friend 1', id: 1, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
-      {name: 'Friend 2', id: 2, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
-      {name: 'Friend 3', id: 3, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
-      {name: 'Friend 4', id: 4, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
-      {name: 'Friend 5', id: 5, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
-    ],
+  reRenderAll() {
+    console.log('state');
   },
+
+  addPost() {
+    let newPost = {
+      id: 6,
+      message: this._state.mainPage.newPostText,
+      likes: 0
+    }
+    this._state.mainPage.postsData.push(newPost);
+    this._state.mainPage.newPostText = '';
+    this.reRenderAll(this._state);
+  },
+
+  updateNewPostText(newText) {
+    this._state.mainPage.newPostText = newText;
+    this.reRenderAll(this._state);
+  },
+
+  addMessage() {
+    let newMessage = {
+      id: 6,
+      message: this._state.messagesPage.newMessageText,
+    }
+    this._state.messagesPage.messagesData.push(newMessage);
+    this._state.messagesPage.newMessageText = '';
+    this.reRenderAll(this._state);
+  },
+
+  updateNewMessageText(newMessage) {
+    this._state.messagesPage.newMessageText = newMessage;
+    this.reRenderAll(this._state);
+  },
+
+  subscribe(observer) {
+    this.reRenderAll = observer;
+  },
+
+
 }
 
 
-export const addPost = () => {
-  let newPost = {
-    id: 6,
-    message: state.mainPage.newPostText,
-    likes: 0
-  }
-  state.mainPage.postsData.push(newPost);
-  state.mainPage.newPostText = '';
-  reRenderAll();
-}
-export const updateNewPostText = (newText) => {
-  state.mainPage.newPostText = newText;
-  reRenderAll();
-}
-
-
-export const addMessage = () => {
-  let newMessage = {
-    id: 6,
-    message: state.messagesPage.newMessageText,
-  }
-  state.messagesPage.messagesData.push(newMessage);
-  state.messagesPage.newMessageText = '';
-  reRenderAll();
-}
-export const updateNewMessageText = (newMessage) => {
-  state.messagesPage.newMessageText = newMessage;
-  reRenderAll();
-}
-
-export const subscribe = (observer) => {
-   reRenderAll = observer;
-}
-
-export default state;
+export default store;
+window.store = store;

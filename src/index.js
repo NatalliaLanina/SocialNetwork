@@ -4,14 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import state, {addMessage, addPost, subscribe, updateNewMessageText, updateNewPostText} from "./data/state";
+import store from "./data/state";
 
 
 let reRenderAll = (state) => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} updateNewMessageText={updateNewMessageText} addMessage={addMessage} />
+        <App state={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)} addMessage={store.addMessage.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
@@ -19,8 +19,8 @@ let reRenderAll = (state) => {
 }
 
 
-reRenderAll(state);
-subscribe(reRenderAll);
+reRenderAll(store.getState());
+store.subscribe(reRenderAll);
 
 
 reportWebVitals();
