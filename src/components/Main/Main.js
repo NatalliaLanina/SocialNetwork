@@ -8,9 +8,9 @@ function Main(props) {
       <MainInfo/>
       <MyPosts
         postsData={props.data.postsData}
-        addPost={props.addPost}
+        dispatch={props.dispatch}
         newPostText={props.data.newPostText}
-        updateNewPostText={props.updateNewPostText}/>
+        />
      </main>
   );
 }

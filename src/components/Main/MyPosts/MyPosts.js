@@ -12,12 +12,12 @@ function MyPosts(props) {
   let addPostElement = React.createRef();   //create link to textarea
 
   let addPost = () => {
-    props.addPost();
+    props.dispatch({type: 'ADD-POST'});
   }
 
   let onPostChange = () => {
     let text = addPostElement.current.value;
-    props.updateNewPostText(text);
+    props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
   }
 
 

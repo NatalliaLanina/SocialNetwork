@@ -15,11 +15,11 @@ const Messages = (props) => {
 
   let addMessageElement = React.createRef();   //create link to textarea
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch({type: 'ADD-MESSAGE'});
   }
   let onMessageChange = () => {
     let text = addMessageElement.current.value;
-    props.updateNewMessageText(text);
+    props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: text });
   }
 
 

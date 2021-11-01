@@ -36,53 +36,45 @@ let store = {
       ],
     },
   },
+  _reRenderAll() {
+    console.log('state');
+  },
 
   getState() {
     return this._state;
   },
-
-  reRenderAll() {
-    console.log('state');
-  },
-
-  addPost() {
-    let newPost = {
-      id: 6,
-      message: this._state.mainPage.newPostText,
-      likes: 0
-    }
-    this._state.mainPage.postsData.push(newPost);
-    this._state.mainPage.newPostText = '';
-    this.reRenderAll(this._state);
-  },
-
-  updateNewPostText(newText) {
-    this._state.mainPage.newPostText = newText;
-    this.reRenderAll(this._state);
-  },
-
-  addMessage() {
-    let newMessage = {
-      id: 6,
-      message: this._state.messagesPage.newMessageText,
-    }
-    this._state.messagesPage.messagesData.push(newMessage);
-    this._state.messagesPage.newMessageText = '';
-    this.reRenderAll(this._state);
-  },
-
-  updateNewMessageText(newMessage) {
-    this._state.messagesPage.newMessageText = newMessage;
-    this.reRenderAll(this._state);
-  },
-
   subscribe(observer) {
-    this.reRenderAll = observer;
+    this._reRenderAll = observer;
   },
 
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      let newPost = {
+        id: 6,
+        message: this._state.mainPage.newPostText,
+        likes: 0
+      }
+      this._state.mainPage.postsData.push(newPost);
+      this._state.mainPage.newPostText = '';
+      this._reRenderAll(this._state);
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        this._state.mainPage.newPostText = action.newText;
+        this._reRenderAll(this._state);
+    } else if (action.type === 'ADD-MESSAGE') {
+        let newMessage = {
+          id: 6,
+          message: this._state.messagesPage.newMessageText,
+        }
+        this._state.messagesPage.messagesData.push(newMessage);
+        this._state.messagesPage.newMessageText = '';
+        this._reRenderAll(this._state);
+    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        this._state.messagesPage.newMessageText = action.newMessage;
+        this._reRenderAll(this._state);
+    }
+  },
 
 }
-
 
 export default store;
 window.store = store;
