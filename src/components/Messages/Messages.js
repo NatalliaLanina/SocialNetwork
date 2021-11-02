@@ -2,6 +2,7 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/state";
 
 const Messages = (props) => {
 
@@ -15,11 +16,11 @@ const Messages = (props) => {
 
   let addMessageElement = React.createRef();   //create link to textarea
   let addMessage = () => {
-    props.dispatch({type: 'ADD-MESSAGE'});
+    props.dispatch(addMessageActionCreator());
   }
   let onMessageChange = () => {
     let text = addMessageElement.current.value;
-    props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: text });
+    props.dispatch(updateNewMessageTextActionCreator(text));
   }
 
 

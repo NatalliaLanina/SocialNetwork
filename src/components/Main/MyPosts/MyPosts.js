@@ -1,6 +1,7 @@
 import myPostsClass from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../data/state";
 
 
 function MyPosts(props) {
@@ -8,16 +9,13 @@ function MyPosts(props) {
     (<Post message={post.message} likes={post.likes}/>));   //create massive of posts
 
 
-
   let addPostElement = React.createRef();   //create link to textarea
-
   let addPost = () => {
-    props.dispatch({type: 'ADD-POST'});
+    props.dispatch(addPostActionCreator());
   }
-
   let onPostChange = () => {
     let text = addPostElement.current.value;
-    props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+    props.dispatch(updateNewPostTextActionCreator(text));
   }
 
 
