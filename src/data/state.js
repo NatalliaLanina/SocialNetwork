@@ -1,6 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSAGE = 'ADD-MESSAGE';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let store = {
@@ -65,7 +65,7 @@ let store = {
     } else if (action.type === UPDATE_NEW_POST_TEXT) {
         this._state.mainPage.newPostText = action.newText;
         this._reRenderAll(this._state);
-    } else if (action.type === ADD_MESSAGE) {
+    } else if (action.type === SEND_MESSAGE) {
         let newMessage = {
           id: 6,
           message: this._state.messagesPage.newMessageText,
@@ -84,7 +84,7 @@ let store = {
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreator = (text) =>
   ({type: UPDATE_NEW_POST_TEXT,newText: text});
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE});
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
 export const updateNewMessageTextActionCreator = (text) =>
   ({type: UPDATE_NEW_MESSAGE_TEXT,newMessage: text});
 

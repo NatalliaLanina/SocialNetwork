@@ -2,7 +2,7 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/state";
+import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/state";
 
 const Messages = (props) => {
 
@@ -13,16 +13,13 @@ const Messages = (props) => {
     <Message message={mess.message}/>
   ));
 
-
-  let addMessageElement = React.createRef();   //create link to textarea
-  let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+  let sendMessage = () => {
+    props.dispatch(sendMessageActionCreator());
   }
-  let onMessageChange = () => {
-    let text = addMessageElement.current.value;
+  let onMessageChange = (event) => {
+    let text = event.target.value;
     props.dispatch(updateNewMessageTextActionCreator(text));
   }
-
 
   return (
     <div className={messClass.dialogs}>
@@ -37,8 +34,8 @@ const Messages = (props) => {
         </div>
 
         <div className={messClass.add_message}>
-          <textarea onChange={onMessageChange} ref={addMessageElement} value={props.newMessageText}/>
-          <button onClick={addMessage}>Add message</button>
+          <textarea onChange={onMessageChange} value={props.newMessageText}/>
+          <button onClick={sendMessage}>Send message</button>
         </div>
 
       </div>
