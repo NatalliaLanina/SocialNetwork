@@ -1,7 +1,8 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
+
+import mainPageReducer from "./main-page-reducer";
+import messagePageReducer from "./message-page-reducer";
+import navReducer from "./nav-reducer";
 
 let store = {
   _state: {
@@ -53,40 +54,13 @@ let store = {
   },
 
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 6,
-        message: this._state.mainPage.newPostText,
-        likes: 0
-      }
-      this._state.mainPage.postsData.push(newPost);
-      this._state.mainPage.newPostText = '';
-      this._reRenderAll(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-        this._state.mainPage.newPostText = action.newText;
-        this._reRenderAll(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-        let newMessage = {
-          id: 6,
-          message: this._state.messagesPage.newMessageText,
-        }
-        this._state.messagesPage.messagesData.push(newMessage);
-        this._state.messagesPage.newMessageText = '';
-        this._reRenderAll(this._state);
-    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-        this._state.messagesPage.newMessageText = action.newMessage;
-        this._reRenderAll(this._state);
-    }
+    mainPageReducer(this._state.mainPage, action);
+    messagePageReducer(this._state.messagesPage, action);
+    navReducer(this._state.nav, action);
+
+    this._reRenderAll(this._state);
   },
 }
-
-
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updateNewPostTextActionCreator = (text) =>
-  ({type: UPDATE_NEW_POST_TEXT,newText: text});
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
-export const updateNewMessageTextActionCreator = (text) =>
-  ({type: UPDATE_NEW_MESSAGE_TEXT,newMessage: text});
 
 export default store;
 window.store = store;

@@ -2,7 +2,8 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/state";
+import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/message-page-reducer";
+
 
 const Messages = (props) => {
 
