@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import store from "./data/state";
+import store from "./data/redux-store";
 
 
 let reRenderAll = (state) => {
@@ -20,7 +20,10 @@ let reRenderAll = (state) => {
 
 
 reRenderAll(store.getState());
-store.subscribe(reRenderAll);
+store.subscribe( () => {
+  let state = store.getState();
+  reRenderAll(state);
+});
 
 
 reportWebVitals();
