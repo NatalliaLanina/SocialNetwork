@@ -6,10 +6,11 @@ import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../..
 
 
 const Messages = (props) => {
-
+  //let state = props.store.getState().dialogsData;
   let dialogsElements = props.data.dialogsData.map(dialog => (
     <DialogItem name={dialog.name} id={dialog.id}/>
   ));
+
   let messagesElements = props.data.messagesData.map(mess => (
     <Message message={mess.message}/>
   ));

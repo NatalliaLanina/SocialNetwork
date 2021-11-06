@@ -9,7 +9,6 @@ import Friends from "./components/Friends/Friends";
 import Settings from "./components/Settings/Settings";
 
 
-
 function App(props) {
   return (
     <div className="app-wrapper">
@@ -18,11 +17,12 @@ function App(props) {
       <div className="app-wrapper-content">
         <Route path='/main'
                render={() => <Main
-                 data={props.state.mainPage}
+                 store={props.store}
                  dispatch={props.dispatch}
                  />}/>
         <Route path='/messages'
                render={() => <Messages
+                 store={props.store}
                  newMessageText={props.state.messagesPage.newMessageText}
                  data={props.state.messagesPage}
                  dispatch={props.dispatch}
