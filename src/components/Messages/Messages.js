@@ -2,25 +2,23 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/message-page-reducer";
 
 
 const Messages = (props) => {
-  //let state = props.store.getState().dialogsData;
-  let dialogsElements = props.data.dialogsData.map(dialog => (
+  let dialogsElements = props.dialogsData.map(dialog => (
     <DialogItem name={dialog.name} id={dialog.id}/>
   ));
 
-  let messagesElements = props.data.messagesData.map(mess => (
+  let messagesElements = props.messagesData.map(mess => (
     <Message message={mess.message}/>
   ));
 
   let sendMessage = () => {
-    props.dispatch(sendMessageActionCreator());
+    props.sendMessageActionCreator();
   }
   let onMessageChange = (event) => {
     let text = event.target.value;
-    props.dispatch(updateNewMessageTextActionCreator(text));
+    props.updateNewMessageTextActionCreator(text);
   }
 
   return (
