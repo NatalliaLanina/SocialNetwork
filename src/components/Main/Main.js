@@ -3,12 +3,12 @@ import MainInfo from "./MainInfo/MainInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
-function Main(props) {
+function Main() {
 
   return (
     <main>
       <MainInfo/>
-      <MyPostsContainer store={props.store} dispatch={props.dispatch}/>
+      <MyPostsContainer />
      </main>
   );
 }

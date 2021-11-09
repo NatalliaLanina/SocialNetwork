@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import store from "./data/redux-store";
+import {Provider} from "react-redux";
 
 
 let reRenderAll = () => {
   ReactDOM.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App store={store} state={store.getState()} dispatch={store.dispatch.bind(store)} />
+        <Provider store={store}>
+          <App/>
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
@@ -20,7 +23,7 @@ let reRenderAll = () => {
 
 
 reRenderAll(store.getState());
-store.subscribe( () => {
+store.subscribe(() => {
   let state = store.getState();
   reRenderAll(state);
 });
