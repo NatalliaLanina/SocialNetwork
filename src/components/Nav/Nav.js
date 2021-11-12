@@ -6,7 +6,7 @@ import NavFriend from "./navFriends/NavFriend";
 function Nav(props) {
 
   let navElements = props.navData.map(el => (
-    <NavFriend name={el.name} id={el.id} img={el.img}/>
+    <NavFriend key={el.id} name={el.name} id={el.id} img={el.img}/>
   ));
 
   return (

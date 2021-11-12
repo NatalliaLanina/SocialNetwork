@@ -6,11 +6,11 @@ import React from "react";
 
 const Messages = (props) => {
   let dialogsElements = props.dialogsData.map(dialog => (
-    <DialogItem name={dialog.name} id={dialog.id}/>
+    <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>
   ));
 
   let messagesElements = props.messagesData.map(mess => (
-    <Message message={mess.message}/>
+    <Message key={mess.id} message={mess.message}/>
   ));
 
   let sendMessage = () => {

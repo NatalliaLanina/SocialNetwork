@@ -25,16 +25,19 @@ const messagePageReducer = (state = initialState, action) => {
         id: 6,
         message: state.newMessageText,
       }
-      state.messagesData.push(newMessage);
-      state.newMessageText = '';
-      break;
+      return {
+        ...state,
+        newMessageText: '',
+        messagesData: [...state.messagesData, newMessage],
+      };
     case UPDATE_NEW_MESSAGE_TEXT:
-      state.newMessageText = action.newMessage;
-      break;
+      return {
+        ...state,
+        newMessageText: action.newMessage,
+      };
     default:
       return state;
   }
-  return state;
 }
 
 export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});

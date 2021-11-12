@@ -5,7 +5,7 @@ import React from "react";
 
 function MyPosts(props) {
   let postsElement = props.postsData.map(post =>
-    (<Post message={post.message} likes={post.likes}/>));   //create massive of posts
+    (<Post key={post.id} message={post.message} likes={post.likes}/>));   //create massive of posts
 
 
   let addPost = () => {

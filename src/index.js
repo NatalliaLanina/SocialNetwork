@@ -8,25 +8,16 @@ import store from "./data/redux-store";
 import {Provider} from "react-redux";
 
 
-let reRenderAll = () => {
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store}>
-          <App/>
-        </Provider>
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-}
-
-
-reRenderAll(store.getState());
-store.subscribe(() => {
-  let state = store.getState();
-  reRenderAll(state);
-});
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App/>
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 
 reportWebVitals();

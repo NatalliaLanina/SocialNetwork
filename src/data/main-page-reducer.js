@@ -17,20 +17,24 @@ const mainPageReducer = (state = initialState, action) => {
         message: state.newPostText,
         likes: 0
       }
-      state.postsData.push(newPost);
-      state.newPostText = '';
-      break;
+      return {
+        ...state,
+        newPostText: '',
+        postsData: [...state.postsData, newPost],
+      };
     case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText;
-      break;
+      return {
+        ...state,
+        newPostText: action.newPost,
+      };
     default:
       return state;
   }
-  return state;
+
 }
 
 export const addPostActionCreator = () => ({type: ADD_POST});
 export const updateNewPostTextActionCreator = (text) =>
-  ({type: UPDATE_NEW_POST_TEXT,newText: text});
+  ({type: UPDATE_NEW_POST_TEXT,newPost: text});
 
 export default mainPageReducer;
