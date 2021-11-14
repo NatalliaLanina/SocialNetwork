@@ -18,7 +18,7 @@ function Nav(props) {
           <li><NavLink to="/messages" activeClassName={navClass.active} className={navClass.item}>Messages</NavLink>
           </li>
           <li><NavLink to="/news" activeClassName={navClass.active} className={navClass.item}>News</NavLink></li>
-          <li><NavLink to="/friends" activeClassName={navClass.active} className={navClass.item}>Friends</NavLink></li>
+          <li><NavLink to="/friends" activeClassName={navClass.active} className={navClass.item}>Find friends</NavLink></li>
           <li><NavLink to="/settings" activeClassName={navClass.active} className={navClass.item}>Settings</NavLink>
           </li>
         </ul>

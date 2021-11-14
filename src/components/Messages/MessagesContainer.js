@@ -2,28 +2,6 @@ import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../..
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
-
-
-/*
-const MessagesContainer = (props) => {
-  let state = props.store.getState();
-  let sendMessage = () => {
-    props.dispatch(sendMessageActionCreator());
-  }
-  let onMessageChange = (text) => {
-    props.dispatch(updateNewMessageTextActionCreator(text));
-  }
-
-  return (
-    <Messages sendMessageActionCreator={sendMessage}
-              updateNewMessageTextActionCreator={onMessageChange}
-              dialogsData={state.messagesPage.dialogsData}
-              messagesData={state.messagesPage.messagesData}
-              newMessageText={state.messagesPage.newMessageText}/>
-  )
-}
-*/
-
 const mapStateToProps = (state) => {
   return {
     messagesData: state.messagesPage.messagesData,

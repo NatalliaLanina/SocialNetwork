@@ -1,3 +1,34 @@
 .main {
+    display: flex;
+    flex-direction: row;
     color: lightpink;
+    padding: 1em;
+}
+.main img {
+    width: 40px;
+    height: 40px;
+}
+.item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid white;
+}
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.avatar img {
+    margin-bottom: 10px;
+}
+.avatar button {
+    width: 70px;
+}
+.name {
+    color: white;
+    font-size: 1.3em;
 }
