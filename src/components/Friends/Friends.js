@@ -1,28 +1,41 @@
 import friendsClass from './Friends.module.css';
 import React from "react";
+import * as axios from "axios";
 
 const Friends = (props) => {
-  return (
-    props.friendsData.map(user => <div key={user.id} className={friendsClass.main}>
+  const getFriends = () => {
+    if (props.friendsData.length === 0) {
+      axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        props.setFriends(response.data.items);
+      });
+    }
+  }
+
+  return <div>
+    <button onClick={getFriends}>Get friends</button>
+    {props.friendsData.map(user => <div key={user.id} className={friendsClass.main}>
       <div className={friendsClass.avatar}>
         <div>
-          <img src={user.avatar} alt="111"/>
+          <img src={user.photos.small} alt="111"/>
         </div>
-        <div>{user.followed ? <button onClick={() => {props.unfollow(user.id)}}>Unfollow</button> : <button onClick={() => {props.follow(user.id)}}>Follow</button>}</div>
+        <div>{user.followed ? <button onClick={() => {
+          props.unfollow(user.id)
+        }}>Unfollow</button> : <button onClick={() => {
+          props.follow(user.id)
+        }}>Follow</button>}</div>
       </div>
-
       <div className={friendsClass.item}>
         <div>
           <div className={friendsClass.name}>{user.name}</div>
           <div>{user.status}</div>
         </div>
         <div>
-          <div>{user.location.country}</div>
-          <div>{user.location.city}</div>
+          <div>{'user.location.country'}</div>
+          <div>{'user.location.city'}</div>
         </div>
       </div>
-    </div>)
-  )
-}
+    </div>)}
+  </div>
+};
 
 export default Friends;
