@@ -1,11 +1,20 @@
 import Friends from "./Friends";
 import {connect} from "react-redux";
-import {followAC, setFriendsAC, unfollowAC} from "../../data/friends-page-reducer";
+import {
+  followAC,
+  setCurrentPageAC,
+  setFriendsAC,
+  setTotalUsersCountAC,
+  unfollowAC
+} from "../../data/friends-page-reducer";
 
 
 const mapStateToProps = (state) => {
   return {
     friendsData: state.friendsPage.friendsData,
+    pageSize: state.friendsPage.pageSize,
+    totalUsersCount: state.friendsPage.totalUsersCount,
+    currentPage: state.friendsPage.currentPage,
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -18,6 +27,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     setFriends: (users) => {
       dispatch(setFriendsAC(users));
+    },
+    setCurrentPage: (currentPage) => {
+      dispatch(setCurrentPageAC(currentPage));
+    },
+    setTotalUsersCount: (totalCount) => {
+      dispatch(setTotalUsersCountAC(totalCount));
     }
   }
 }
