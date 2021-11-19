@@ -1,6 +1,7 @@
 import React from "react";
 import friendsClass from './Friends.module.css';
 import userPhoto from './user.png';
+import {NavLink} from "react-router-dom";
 
 
 let Friends = (props) => {
@@ -23,7 +24,7 @@ let Friends = (props) => {
     {props.friendsData.map(user => <div key={user.id} className={friendsClass.main}>
       <div className={friendsClass.avatar}>
         <div>
-          <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="111"/>
+          <NavLink to={'/main/' + user.id}><img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="111"/></NavLink>
         </div>
         <div>{user.followed ? <button onClick={() => {
           props.unfollow(user.id)
