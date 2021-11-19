@@ -60,12 +60,12 @@ const friendsPageReducer = (state = initialState, action) => {
   }
 }
 
-export const followAC = (userId) => ({type: FOLLOW, userId});
-export const unfollowAC = (userId) => ({type: UNFOLLOW, userId});
-export const setFriendsAC = (users) => ({type: SET_FRIENDS, users});
-export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const setTotalUsersCountAC = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
-export const setIsFetchingAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setFriends = (users) => ({type: SET_FRIENDS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
+export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default friendsPageReducer;
 

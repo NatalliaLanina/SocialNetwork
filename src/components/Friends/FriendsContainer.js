@@ -1,41 +1,34 @@
 import {connect} from "react-redux";
-import {
-  followAC,
-  setCurrentPageAC,
-  setFriendsAC, setIsFetchingAC,
-  setTotalUsersCountAC,
-  unfollowAC
-} from "../../data/friends-page-reducer";
+import {follow, setCurrentPage, setFriends, setIsFetching, setTotalUsersCount, unfollow} from "../../data/friends-page-reducer";
 import React from "react";
 import * as axios from "axios";
 import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";
 
 
-
 class FriendsContainer extends React.Component {
 
   componentDidMount() {
-    this.props.toggleIsFetching(true);
+    this.props.setIsFetching(true);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-      this.props.toggleIsFetching(false);
+      this.props.setIsFetching(false);
       this.props.setFriends(response.data.items);
       this.props.setTotalUsersCount(response.data.totalCount);
     });
   }
 
   onPageChanged = (page) => {
-    this.props.toggleIsFetching(true);
+    this.props.setIsFetching(true);
     this.props.setCurrentPage(page);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-      this.props.toggleIsFetching(false);
+      this.props.setIsFetching(false);
       this.props.setFriends(response.data.items);
     });
   };
 
   render() {
     return <>
-      {this.props.isFetching ? <Preloader />: null}
+      {this.props.isFetching ? <Preloader/> : null}
       <Friends onPageChanged={this.onPageChanged}
                totalUsersCount={this.props.totalUsersCount}
                pageSize={this.props.pageSize}
@@ -58,6 +51,17 @@ const mapStateToProps = (state) => {
     isFetching: state.friendsPage.isFetching,
   }
 }
+
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setFriends,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsFetching})(FriendsContainer);
+
+
+/*
 const mapDispatchToProps = (dispatch) => {
   return {
     follow: (userId) => {
@@ -80,5 +84,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer);
+*/

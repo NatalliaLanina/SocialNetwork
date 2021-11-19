@@ -14,11 +14,11 @@ const Messages = (props) => {
   ));
 
   let sendMessage = () => {
-    props.sendMessageActionCreator();
+    props.sendMessage();
   }
   let onMessageChange = (event) => {
     let text = event.target.value;
-    props.updateNewMessageTextActionCreator(text);
+    props.updateNewMessageText(text);
   }
 
   return (

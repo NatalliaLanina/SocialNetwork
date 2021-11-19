@@ -1,4 +1,4 @@
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from "../../data/message-page-reducer";
+import {sendMessage, updateNewMessageText} from "../../data/message-page-reducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
@@ -9,6 +9,17 @@ const mapStateToProps = (state) => {
     newMessageText: state.messagesPage.newMessageText,
   }
 }
+
+const MessagesContainer = connect(mapStateToProps, {
+  sendMessage,
+  updateNewMessageText,
+})(Messages);
+
+export default MessagesContainer;
+
+
+
+/*
 const mapDispatchToProps = (dispatch) => {
   return {
     sendMessageActionCreator: () => {
@@ -19,7 +30,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   }
 }
-
-const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
-
-export default MessagesContainer;
+*/

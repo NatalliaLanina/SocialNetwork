@@ -9,11 +9,11 @@ function MyPosts(props) {
 
 
   let addPost = () => {
-    props.addPostActionCreator();
+    props.addPost();
   }
   let onPostChange = (event) => {
     let text = event.target.value;
-    props.updateNewPostTextActionCreator(text);
+    props.updateNewPostText(text);
   }
 
   return (
