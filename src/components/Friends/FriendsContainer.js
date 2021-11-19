@@ -9,7 +9,9 @@ import {
 import React from "react";
 import * as axios from "axios";
 import Friends from "./Friends";
-import spinner from "./spinner.svg"
+import Preloader from "../common/Preloader/Preloader";
+
+
 
 class FriendsContainer extends React.Component {
 
@@ -33,7 +35,7 @@ class FriendsContainer extends React.Component {
 
   render() {
     return <>
-      {this.props.isFetching ? <div><img src={spinner} alt={1111} style={{position:"absolute", top:"50%", left:"50%"}}/> </div>: null}
+      {this.props.isFetching ? <Preloader />: null}
       <Friends onPageChanged={this.onPageChanged}
                totalUsersCount={this.props.totalUsersCount}
                pageSize={this.props.pageSize}
@@ -46,7 +48,6 @@ class FriendsContainer extends React.Component {
     </>
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
