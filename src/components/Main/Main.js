@@ -3,11 +3,11 @@ import MainInfo from "./MainInfo/MainInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
-function Main() {
+function Main(props) {
 
   return (
     <main>
-      <MainInfo/>
+      <MainInfo profile={props.profile}/>
       <MyPostsContainer />
      </main>
   );

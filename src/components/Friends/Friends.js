@@ -17,7 +17,7 @@ let Friends = (props) => {
       {pages.map(page => {
         return <span onClick={() => {
           props.onPageChanged(page)
-        }} className={props.currentPage === page && friendsClass.selectedPage}>{page}</span>
+        }} className={props.currentPage === page && friendsClass.selectedPage} key={page}>{page}</span>
       })}
     </div>
 
