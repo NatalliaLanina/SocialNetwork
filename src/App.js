@@ -14,7 +14,7 @@ function App() {
       <Header/>
       <NavContainer/>
       <div className="app-wrapper-content">
-        <Route path='/main'
+        <Route path='/main/:userId?'
                render={() => <MainContainer/>}/>
         <Route path='/messages'
                render={() => <MessagesContainer/>}/>
