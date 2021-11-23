@@ -2,6 +2,7 @@ import React from "react";
 import friendsClass from './Friends.module.css';
 import userPhoto from './user.png';
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 
 let Friends = (props) => {
@@ -24,13 +25,36 @@ let Friends = (props) => {
     {props.friendsData.map(user => <div key={user.id} className={friendsClass.main}>
       <div className={friendsClass.avatar}>
         <div>
-          <NavLink to={'/main/' + user.id}><img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="111"/></NavLink>
+          <NavLink to={'/main/' + user.id}>
+            <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="111"/>
+          </NavLink>
         </div>
-        <div>{user.followed ? <button onClick={() => {
-          props.unfollow(user.id)
-        }}>Unfollow</button> : <button onClick={() => {
-          props.follow(user.id)
-        }}>Follow</button>}</div>
+        <div>{user.followed
+          ? <button onClick={() => {
+            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+              withCredentials: true,
+              headers: {
+                "API-KEY": '5a2ea525-ce0e-4154-b47e-600d0872fe12'
+              }
+            }).then(response => {
+              if (response.data.resultCode === 0) {
+                props.unfollow(user.id)
+              }
+            });
+          }}>Unfollow</button>
+          : <button onClick={() => {
+            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+              withCredentials: true,
+              headers: {
+                "API-KEY": '5a2ea525-ce0e-4154-b47e-600d0872fe12'
+              }
+            }).then(response => {
+              if (response.data.resultCode === 0) {
+                props.follow(user.id)
+              }
+            });
+          }}>Follow</button>}
+        </div>
       </div>
       <div className={friendsClass.item}>
         <div>
