@@ -3,6 +3,7 @@ import {NavLink} from "react-router-dom";
 import userPhoto from "../Friends/user.png"
 
 function Header(props) {
+
   return (
     <header className={headClass.header}>
       <div className={headClass.header__container}>

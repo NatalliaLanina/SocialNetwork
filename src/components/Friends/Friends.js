@@ -2,11 +2,10 @@ import React from "react";
 import friendsClass from './Friends.module.css';
 import userPhoto from './user.png';
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
+import {usersAPI} from "../../api/api";
 
 
 let Friends = (props) => {
-
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -31,25 +30,15 @@ let Friends = (props) => {
         </div>
         <div>{user.followed
           ? <button onClick={() => {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-              withCredentials: true,
-              headers: {
-                "API-KEY": '5a2ea525-ce0e-4154-b47e-600d0872fe12'
-              }
-            }).then(response => {
-              if (response.data.resultCode === 0) {
+           usersAPI.unfollow(user.id).then(data => {
+              if (data.resultCode === 0) {
                 props.unfollow(user.id)
               }
             });
           }}>Unfollow</button>
           : <button onClick={() => {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-              withCredentials: true,
-              headers: {
-                "API-KEY": '5a2ea525-ce0e-4154-b47e-600d0872fe12'
-              }
-            }).then(response => {
-              if (response.data.resultCode === 0) {
+            usersAPI.follow(user.id).then(data => {
+              if (data.resultCode === 0) {
                 props.follow(user.id)
               }
             });
