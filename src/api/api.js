@@ -25,6 +25,14 @@ export const usersAPI = {
     })
   },
 
+  getProfile(id) {
+    return instance.get(`profile/${id}`, {
+      withCredentials: true
+    }).then(response => {
+      return response.data
+    })
+  },
+
   follow(id) {
     return instance.post(`follow/${id}`, {
       withCredentials: true

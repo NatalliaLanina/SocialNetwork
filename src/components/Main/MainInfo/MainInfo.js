@@ -16,6 +16,7 @@ function MainInfo(props) {
       <div>
         <h3>{props.profile.fullName}</h3>
         <img src={props.profile.photos.small} alt="1111"/>
+        <p>{props.profile.status}</p>
       </div>
     </div>
 
