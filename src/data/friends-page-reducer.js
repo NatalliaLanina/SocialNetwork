@@ -1,3 +1,5 @@
+import {usersAPI} from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_FRIENDS = 'SET_FRIENDS';
@@ -67,10 +69,16 @@ export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, current
 export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
-export default friendsPageReducer;
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+      dispatch(setIsFetching(false));
+      dispatch(setFriends(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+      dispatch(setCurrentPage(currentPage));
+    });
+  }
+}
 
-/*{id: 1, name: 'Friend 1', avatar: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png' , followed: true, status: 'fine', location: {city: 'Minsk', country: 'Belarus'}},
-  {id: 2, name: 'Friend 2', avatar: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png' , followed: true, status: 'ok', location: {city: 'Prague', country: 'Cech republic'}},
-  {id: 3, name: 'Friend 3', avatar: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png' , followed: false, status: '', location: {city: 'Kiev', country: 'Ukraine'}},
-  {id: 4, name: 'Friend 4', avatar: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png' , followed: false, status: 'fck u', location: {city: 'Minsk', country: 'Belarus'}},
-  {id: 5, name: 'Friend 5', avatar: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png' , followed: false, status: 'walking', location: {city: 'Minsk', country: 'Belarus'}},*/
+export default friendsPageReducer;

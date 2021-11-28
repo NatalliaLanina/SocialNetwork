@@ -1,36 +1,19 @@
 import {connect} from "react-redux";
-import {
-  follow,
-  setCurrentPage,
-  setFriends,
-  setIsFetching,
-  setTotalUsersCount,
-  unfollow
-} from "../../data/friends-page-reducer";
+import {follow, getUsers, setCurrentPage, unfollow} from "../../data/friends-page-reducer";
 import React from "react";
 import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
 
 
 class FriendsContainer extends React.Component {
 
   componentDidMount() {
-    this.props.setIsFetching(true);
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-      this.props.setIsFetching(false);
-      this.props.setFriends(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = (page) => {
-    this.props.setIsFetching(true);
+    this.props.getUsers(page, this.props.pageSize);
     this.props.setCurrentPage(page);
-    usersAPI.getUsers(page, this.props.pageSize).then(data => {
-      this.props.setIsFetching(false);
-      this.props.setFriends(data.items);
-    });
   }
 
   render() {
@@ -62,34 +45,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setFriends,
   setCurrentPage,
-  setTotalUsersCount,
-  setIsFetching
+  getUsers
 })(FriendsContainer);
 
-
-/*
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followAC(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowAC(userId));
-    },
-    setFriends: (users) => {
-      dispatch(setFriendsAC(users));
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPageAC(currentPage));
-    },
-    setTotalUsersCount: (totalCount) => {
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
-    toggleIsFetching: (isFetching) => {
-      dispatch(setIsFetchingAC(isFetching))
-    }
-  }
-}
-*/
