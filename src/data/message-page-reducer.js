@@ -41,7 +41,6 @@ const messagePageReducer = (state = initialState, action) => {
 }
 
 export const sendMessage = () => ({type: SEND_MESSAGE});
-export const updateNewMessageText = (text) =>
-  ({type: UPDATE_NEW_MESSAGE_TEXT,newMessage: text});
+export const updateNewMessageText = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT,newMessage: text});
 
 export default messagePageReducer;

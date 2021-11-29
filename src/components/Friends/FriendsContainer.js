@@ -26,7 +26,6 @@ class FriendsContainer extends React.Component {
                friendsData={this.props.friendsData}
                follow={this.props.follow}
                unfollow={this.props.unfollow}
-
       />
     </>
   }

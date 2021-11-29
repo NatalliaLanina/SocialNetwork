@@ -62,13 +62,14 @@ const friendsPageReducer = (state = initialState, action) => {
   }
 }
 
-export const follow = (userId) => ({type: FOLLOW, userId});
-export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const followUser = (userId) => ({type: FOLLOW, userId});
+export const unfollowUser = (userId) => ({type: UNFOLLOW, userId});
 export const setFriends = (users) => ({type: SET_FRIENDS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
+//thunks
 export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
@@ -80,5 +81,24 @@ export const getUsers = (currentPage, pageSize) => {
     });
   }
 }
+export const follow = (userId) => {
+  return (dispatch) => {
+    usersAPI.follow(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(followUser(userId))
+      }
+    });
+  }
+}
+export const unfollow = (userId) => {
+  return (dispatch) => {
+    usersAPI.unfollow(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(unfollowUser(userId))
+      }
+    });
+  }
+}
+
 
 export default friendsPageReducer;

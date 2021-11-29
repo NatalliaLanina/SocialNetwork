@@ -2,7 +2,6 @@ import React from "react";
 import friendsClass from './Friends.module.css';
 import userPhoto from './user.png';
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 
 
 let Friends = (props) => {
@@ -28,21 +27,8 @@ let Friends = (props) => {
             <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="111"/>
           </NavLink>
         </div>
-        <div>{user.followed
-          ? <button onClick={() => {
-           usersAPI.unfollow(user.id).then(data => {
-              if (data.resultCode === 0) {
-                props.unfollow(user.id)
-              }
-            });
-          }}>Unfollow</button>
-          : <button onClick={() => {
-            usersAPI.follow(user.id).then(data => {
-              if (data.resultCode === 0) {
-                props.follow(user.id)
-              }
-            });
-          }}>Follow</button>}
+        <div>{user.followed ? <button onClick={() => {props.unfollow(user.id)}}>Unfollow</button>
+          : <button onClick={() => {props.follow(user.id)}}>Follow</button>}
         </div>
       </div>
       <div className={friendsClass.item}>
