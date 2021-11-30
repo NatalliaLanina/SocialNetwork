@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
     messagesData: state.messagesPage.messagesData,
     dialogsData: state.messagesPage.dialogsData,
     newMessageText: state.messagesPage.newMessageText,
+    isAuth: state.auth.isAuth,
   }
 }
 
@@ -19,15 +20,3 @@ export default MessagesContainer;
 
 
 
-/*
-const mapDispatchToProps = (dispatch) => {
-  return {
-    sendMessageActionCreator: () => {
-      dispatch(sendMessageActionCreator());
-    },
-    updateNewMessageTextActionCreator: (text) => {
-      dispatch(updateNewMessageTextActionCreator(text));
-    },
-  }
-}
-*/
