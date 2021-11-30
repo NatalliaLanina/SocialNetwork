@@ -2,7 +2,6 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {Redirect} from "react-router-dom";
 
 
 const Messages = (props) => {
@@ -21,8 +20,6 @@ const Messages = (props) => {
     let text = event.target.value;
     props.updateNewMessageText(text);
   }
-
-  if(!props.isAuth) return <Redirect to={'/login'}/>;
 
   return (
     <div className={messClass.dialogs}>
