@@ -3,6 +3,8 @@ import {follow, getUsers, setCurrentPage, unfollow} from "../../data/friends-pag
 import React from "react";
 import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/AuthRedirect";
 
 
 class FriendsContainer extends React.Component {
@@ -41,10 +43,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  getUsers
-})(FriendsContainer);
+
+export default compose(
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    getUsers
+  }),
+  withAuthRedirect
+)(FriendsContainer)
 

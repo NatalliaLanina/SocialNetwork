@@ -3,6 +3,7 @@ import React from "react";
 //import Preloader from "../common/Preloader/Preloader";
 import Header from "./Header";
 import {getAuth, setUserData} from "../../data/auth-reducer";
+import {compose} from "redux";
 
 
 class HeaderContainer extends React.Component {
@@ -27,4 +28,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {setUserData, getAuth})(HeaderContainer);
+export default compose(
+  connect(mapStateToProps, {setUserData, getAuth})
+)(HeaderContainer);

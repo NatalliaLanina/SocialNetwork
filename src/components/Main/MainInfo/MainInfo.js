@@ -1,6 +1,6 @@
 import mainInfoClass from './MainInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
-
+import userPhoto from '../../Friends/user.png'
 
 function MainInfo(props) {
   if (!props.profile) {
@@ -10,7 +10,7 @@ function MainInfo(props) {
   return (
     <div className={mainInfoClass.main__logo}>
       <div>
-        <img src={props.profile.photos.small} alt="1111"/>
+        <img src={props.profile.photos.small !== null ? props.profile.photos.small : userPhoto} alt="1111"/>
         <h3>{props.profile.fullName}</h3>
         <i>
           <p>{props.profile.aboutMe}</p>

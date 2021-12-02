@@ -1,5 +1,6 @@
 import Nav from "./Nav";
 import {connect} from "react-redux";
+import {compose} from "redux";
 
 
 const mapStateToProps = (state) => {
@@ -13,8 +14,7 @@ const mapDispatchToProps = () => {
   }
 }
 
-
-const NavContainer = connect(mapStateToProps, mapDispatchToProps)(Nav);
-
-export default NavContainer;
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(Nav);
 
