@@ -13,3 +13,9 @@
 .main__logo h3 {
     margin: 1em 0;
 }
+.status {
+    background-color: transparent;
+    color: rgba(128, 250, 250, 0.85);
+    font-style: italic;
+    cursor: pointer;
+}
