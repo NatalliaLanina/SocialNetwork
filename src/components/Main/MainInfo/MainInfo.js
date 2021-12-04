@@ -13,7 +13,7 @@ function MainInfo(props) {
       <div>
         <img src={props.profile.photos.small !== null ? props.profile.photos.small : userPhoto} alt="1111"/>
         <h3>{props.profile.fullName}</h3>
-        <Status status={'hello everyone'}/>
+        <Status status={props.status} updateStatus={props.updateStatus}/>
         <p>{props.profile.lookingForAJobDescription}</p>
         <p>{props.profile.contacts.github}</p>
       </div>

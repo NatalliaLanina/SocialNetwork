@@ -6,18 +6,26 @@ class Status extends React.Component {
   /*  if (!props.profile) {
       return <Preloader/>
     }*/
+
   state = {
     editMode: false,
+    status: this.props.status,
   }
 
-  setEditMode() {
+  setEditMode = () => {
     this.setState({
       editMode: true
     })
   }
-  removeEditMode() {
+  removeEditMode = () => {
     this.setState({
       editMode: false
+    })
+    this.props.updateStatus(this.state.status)
+  }
+  onStatusChange = (event) => {
+    this.setState({
+      status: event.target.value
     })
   }
 
@@ -25,9 +33,10 @@ class Status extends React.Component {
     return (
       <div>
         {!this.state.editMode &&
-        <div onClick={this.setEditMode.bind(this)} className={mainInfoClass.status}>{this.props.status}</div>}
+        <div onClick={this.setEditMode} className={mainInfoClass.status}>{this.props.status || '-----'}</div>}
         {this.state.editMode && <div>
-          <input autoFocus={true} onBlur={this.removeEditMode.bind(this)} type="text" value={this.props.status} className={mainInfoClass.status}/>
+          <input onChange={this.onStatusChange} autoFocus={true} onBlur={this.removeEditMode} type="text"
+                 value={this.state.status} className={mainInfoClass.status}/>
         </div>}
       </div>
     )

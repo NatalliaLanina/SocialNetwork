@@ -1,7 +1,7 @@
 import {sendMessage, updateNewMessageText} from "../../data/message-page-reducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
-import React from "react";
+//import React from "react";
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
 

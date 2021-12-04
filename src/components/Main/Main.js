@@ -6,7 +6,7 @@ import React from "react";
 function Main(props) {
   return (
     <main>
-      <MainInfo profile={props.profile}/>
+      <MainInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
       <MyPostsContainer/>
     </main>
   );
