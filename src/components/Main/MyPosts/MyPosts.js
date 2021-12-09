@@ -1,7 +1,13 @@
 import myPostsClass from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
+/*
+import {Field, Form} from "react-final-form";
 
+const onSubmit = (values) => {
+  console.log(JSON.stringify(values))
+}
+*/
 
 function MyPosts(props) {
   let postsElement = props.postsData.map(post =>
@@ -34,5 +40,31 @@ function MyPosts(props) {
 
   );
 }
+
+/*
+const MyPostsForm = (props) => {
+  return <Form
+    initialValues={{
+      login: '',
+      password: '',
+    }}
+    onSubmit={onSubmit}
+    validate={values => {}}
+    render={({handleSubmit, pristine, form, submitting}) => (
+      <form onSubmit={handleSubmit} action="">
+        <div>
+          <Field
+            name="textarea"
+            component="textarea"/>
+        </div>
+        <div>
+          <button disabled={submitting} type="submit">Add post</button>
+        </div>
+      </form>
+    )}
+  />
+}
+*/
+
 
 export default MyPosts;

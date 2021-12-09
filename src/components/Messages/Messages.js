@@ -2,23 +2,20 @@ import messClass from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
+import {Form, Field} from 'react-final-form'
+
 
 
 const Messages = (props) => {
   let dialogsElements = props.dialogsData.map(dialog => (
     <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>
   ));
-
   let messagesElements = props.messagesData.map(mess => (
     <Message key={mess.id} message={mess.message}/>
   ));
 
-  let sendMessage = () => {
-    props.sendMessage();
-  }
-  let onMessageChange = (event) => {
-    let text = event.target.value;
-    props.updateNewMessageText(text);
+  const onSubmit = (values) => {
+    props.sendMessage(values.newMessageText)
   }
 
   return (
@@ -32,15 +29,34 @@ const Messages = (props) => {
         <div className={messClass.messagesElements}>
           {messagesElements}
         </div>
-
-        <div className={messClass.add_message}>
-          <textarea onChange={onMessageChange} value={props.newMessageText}/>
-          <button onClick={sendMessage}>Send message</button>
-        </div>
-
+        <MessagesForm onSubmit={onSubmit}/>
       </div>
     </div>
   )
+}
+
+const MessagesForm = (props) => {
+  return <Form
+    initialValues={{
+      newMessageText: '',
+    }}
+    onSubmit={props.onSubmit}
+    validate={values => {
+    }}
+    render={({handleSubmit, pristine, form, submitting}) => (
+      <form onSubmit={handleSubmit} action="">
+        <div>
+          <Field
+            name="newMessageText"
+            component="textarea"
+            placeholder='Enter your message'/>
+        </div>
+        <div>
+          <button disabled={submitting} type="submit">Send message</button>
+        </div>
+      </form>
+    )}
+  />
 }
 
 export default Messages;

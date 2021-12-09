@@ -1,0 +1,14 @@
+.container {
+    margin: 1em;
+}
+.container button {
+    margin-top: 1em;
+    padding: .5em 1em;
+    font-weight: bold;
+    background-color: aqua;
+}
+.container input {
+    margin-bottom: 1em;
+    font-size: 1.1em;
+    padding: .3em;
+}

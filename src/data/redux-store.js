@@ -6,12 +6,15 @@ import friendsPageReducer from "./friends-page-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk';
 
+
+
 let reducers = combineReducers({
   mainPage: mainPageReducer,
   messagesPage: messagePageReducer,
   nav: navReducer,
   friendsPage: friendsPageReducer,
   auth: authReducer,
+
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
