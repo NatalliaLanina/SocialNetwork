@@ -12,9 +12,7 @@ let initialState = {
   messagesData: [
     {message: 'hi user 2', id: 1},
     {message: 'Hello, glad to see u User 3', id: 2},
-    {message: 'see u later', id: 3},
-    {message: 'bye', id: 4},
-    {message: 'bye', id: 5},
+    {message: 'see u later', id: 3}
   ],
 }
 const messagePageReducer = (state = initialState, action) => {
