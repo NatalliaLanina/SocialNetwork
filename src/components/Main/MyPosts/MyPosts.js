@@ -2,16 +2,18 @@ import myPostsClass from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
 import {Field, Form} from "react-final-form";
+import {maxLength, required} from "../../../utilities/validators/validators";
+import {Textarea} from "../../common/FormControls/FormControls";
 
+const composeValidators = (...validators) => (value) =>
+  validators.reduce((error, validator) => error || validator(value), undefined);
 
 function MyPosts(props) {
   let postsElement = props.postsData.map(post =>
     (<Post key={post.id} message={post.message} likes={post.likes}/>));   //create massive of posts
-
   const onSubmit = (values) => {
     props.addPost(values.newPostText)
   }
-
   return (
     <div className={myPostsClass.content}>
       <MyPostsForm onSubmit={onSubmit}/>
@@ -20,7 +22,6 @@ function MyPosts(props) {
         {postsElement}
       </div>
     </div>
-
   );
 }
 
@@ -37,8 +38,10 @@ const MyPostsForm = (props) => {
         <div>
           <Field
             name="newPostText"
-            component="textarea"
-            placeholder='add post'/>
+            type='textarea'
+            component={Textarea}
+            placeholder='add post'
+            validate={composeValidators(required, maxLength(30))}/>
         </div>
         <div>
           <button disabled={submitting} type="submit">Add post</button>
@@ -47,6 +50,5 @@ const MyPostsForm = (props) => {
     )}
   />
 }
-
 
 export default MyPosts;

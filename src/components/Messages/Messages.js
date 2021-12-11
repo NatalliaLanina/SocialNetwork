@@ -3,8 +3,11 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 import {Form, Field} from 'react-final-form'
+import {Textarea} from "../common/FormControls/FormControls";
+import {maxLength, required} from "../../utilities/validators/validators";
 
-
+const composeValidators = (...validators) => (value) =>
+  validators.reduce((error, validator) => error || validator(value), undefined);
 
 const Messages = (props) => {
   let dialogsElements = props.dialogsData.map(dialog => (
@@ -47,8 +50,10 @@ const MessagesForm = (props) => {
       <form onSubmit={handleSubmit} action="">
         <div>
           <Field
+            type='textarea'
             name="newMessageText"
-            component="textarea"
+            component={Textarea}
+            validate={composeValidators(required, maxLength(30))}
             placeholder='Enter your message'/>
         </div>
         <div>
