@@ -2,11 +2,11 @@ import myPostsClass from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
 import {Field, Form} from "react-final-form";
-import {maxLength, required} from "../../../utilities/validators/validators";
-import {Textarea} from "../../common/FormControls/FormControls";
+import {composeValidators, maxLength, required} from "../../../utilities/validators/validators";
+import {Element} from "../../common/FormControls/FormControls";
 
-const composeValidators = (...validators) => (value) =>
-  validators.reduce((error, validator) => error || validator(value), undefined);
+
+const Textarea = Element("textarea");
 
 function MyPosts(props) {
   let postsElement = props.postsData.map(post =>
