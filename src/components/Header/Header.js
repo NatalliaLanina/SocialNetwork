@@ -13,14 +13,18 @@ function Header(props) {
             src="https://cdn-icons-png.flaticon.com/512/5547/5547473.png"
             alt="logo"/>
         </div>
+
         <div className={headClass.header__title}>
           <h1>Social network</h1>
         </div>
+
         <div className={headClass.avatar__container}>
-          <div>
-            <img className={headClass.avatar} src={userPhoto} alt="111"/>
-          </div>
-          {props.isAuth ? props.login :
+          <div><img className={headClass.avatar} src={userPhoto} alt="111"/></div>
+          {props.isAuth ? <div>{props.login}
+              <div>
+                <button onClick={props.logout}>Log out</button>
+              </div>
+            </div> :
             <NavLink to={'/login'}>Login</NavLink>
           }
         </div>

@@ -48,9 +48,18 @@
     border-radius: 50%;
 
 }
+
 .avatar__container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.avatar__container button {
+    width: 100%;
+    background-color: aqua;
+    margin-top: 1em;
+    border-radius: 5px;
+    cursor: pointer;
 }

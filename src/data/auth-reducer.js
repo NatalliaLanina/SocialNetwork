@@ -15,8 +15,7 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_DATA:
       return {
         ...state,
-        ...action.payload,
-        isAuth: true,
+        ...action.data,
       }
 
     default:
@@ -41,13 +40,13 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 }
 export const logout = () => (dispatch) => {
   authAPI.logout().then(data => {
-    if (data.resultCode === 0) {
+    if (data.data.resultCode === 0) {
       dispatch(setUserData(null, null, null, false));
     }
   });
 }
 export const setUserData = (userId, email, login, isAuth) => ({
   type: SET_USER_DATA,
-  payload: {userId, email, login, isAuth}
+  data: {userId, email, login, isAuth}
 });
 export default authReducer;
