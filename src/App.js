@@ -16,7 +16,7 @@ function App() {
       <NavContainer/>
       <div className="app-wrapper-content">
         <Route path='/main/:userId?'
-               render={() => <MainContainer/>} />
+               render={() => <MainContainer/>}/>
         <Route path='/messages'
                render={() => <MessagesContainer/>}/>
         <Route path='/news'
@@ -31,6 +31,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

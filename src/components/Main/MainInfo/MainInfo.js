@@ -1,7 +1,7 @@
 import mainInfoClass from './MainInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import userPhoto from '../../Friends/user.png'
-import Status from './Status'
+import StatusHook from "./StatusHook";
 
 function MainInfo(props) {
   if (!props.profile) {
@@ -13,7 +13,7 @@ function MainInfo(props) {
       <div>
         <img src={props.profile.photos.small !== null ? props.profile.photos.small : userPhoto} alt="1111"/>
         <h3>{props.profile.fullName}</h3>
-        <Status status={props.status} updateStatus={props.updateStatus}/>
+        <StatusHook status={props.status} updateStatus={props.updateStatus}/>
         <p>{props.profile.lookingForAJobDescription}</p>
         <p>{props.profile.contacts.github}</p>
       </div>

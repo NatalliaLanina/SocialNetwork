@@ -73,11 +73,11 @@ export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetch
 export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
+    dispatch(setCurrentPage(currentPage));
     usersAPI.getUsers(currentPage, pageSize).then(data => {
       dispatch(setIsFetching(false));
       dispatch(setFriends(data.items));
       dispatch(setTotalUsersCount(data.totalCount));
-      dispatch(setCurrentPage(currentPage));
     });
   }
 }
