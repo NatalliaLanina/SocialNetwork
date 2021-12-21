@@ -8,7 +8,7 @@ import {Element} from "../../common/FormControls/FormControls";
 
 const Textarea = Element("textarea");
 
-function MyPosts(props) {
+const MyPosts = props => {
   let postsElement = props.postsData.map(post =>
     (<Post key={post.id} message={post.message} likes={post.likes}/>));   //create massive of posts
   const onSubmit = (values) => {
@@ -23,7 +23,7 @@ function MyPosts(props) {
       </div>
     </div>
   );
-}
+};
 
 const MyPostsForm = (props) => {
   return <Form
@@ -33,7 +33,7 @@ const MyPostsForm = (props) => {
     onSubmit={props.onSubmit}
     validate={values => {
     }}
-    render={({handleSubmit, pristine, form, submitting}) => (
+    render={({handleSubmit, submitting}) => (
       <form onSubmit={handleSubmit} action="">
         <div>
           <Field
