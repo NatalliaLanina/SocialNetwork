@@ -70,33 +70,26 @@ export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, coun
 export const setIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 //thunks
-export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
-    dispatch(setCurrentPage(currentPage));
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
-      dispatch(setIsFetching(false));
-      dispatch(setFriends(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
+export const getUsers = (currentPage, pageSize) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  dispatch(setCurrentPage(currentPage));
+  let data = await usersAPI.getUsers(currentPage, pageSize);
+  dispatch(setIsFetching(false));
+  dispatch(setFriends(data.items));
+  dispatch(setTotalUsersCount(data.totalCount));
+}
+
+export const follow = (userId) => async (dispatch) => {
+  let data = await usersAPI.follow(userId);
+  if (data.resultCode === 0) {
+    dispatch(followUser(userId))
   }
 }
-export const follow = (userId) => {
-  return (dispatch) => {
-    usersAPI.follow(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(followUser(userId))
-      }
-    });
-  }
-}
-export const unfollow = (userId) => {
-  return (dispatch) => {
-    usersAPI.unfollow(userId).then(data => {
-      if (data.resultCode === 0) {
-        dispatch(unfollowUser(userId))
-      }
-    });
+
+export const unfollow = (userId) => async (dispatch) => {
+  let data = await usersAPI.unfollow(userId)
+  if (data.resultCode === 0) {
+    dispatch(unfollowUser(userId))
   }
 }
 
