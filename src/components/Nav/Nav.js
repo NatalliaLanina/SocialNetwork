@@ -11,7 +11,6 @@ function Nav(props) {
 
   return (
     <div>
-
       <nav className={navClass.nav}>
         <ul>
           <li><NavLink to="/main" activeClassName={navClass.active} className={navClass.item}>Main</NavLink></li>

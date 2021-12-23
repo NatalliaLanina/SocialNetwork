@@ -8,11 +8,12 @@ import FriendsContainer from "./components/Friends/FriendsContainer";
 import MainContainer from "./components/Main/MainContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import store from "./data/redux-store";
 
 function App() {
   return (
     <div className="app-wrapper">
-      <HeaderContainer/>
+      <HeaderContainer store={store}/>
       <NavContainer/>
       <div className="app-wrapper-content">
         <Route path='/main/:userId?'
