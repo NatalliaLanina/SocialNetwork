@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import mainPageReducer from "./main-page-reducer";
 import messagePageReducer from "./message-page-reducer";
 import navReducer from "./nav-reducer";
@@ -17,9 +17,8 @@ let reducers = combineReducers({
 
 })
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers,  composeEnhancers(applyMiddleware(thunkMiddleware)));
 
-
-window.store = store;
 export default store;
 
