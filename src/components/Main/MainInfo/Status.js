@@ -1,12 +1,7 @@
-//import Preloader from "../../common/Preloader/Preloader";
 import mainInfoClass from "./MainInfo.module.css";
 import React from "react";
 
 class Status extends React.Component {
-  /*  if (!props.profile) {
-      return <Preloader/>
-    }*/
-
   state = {
     editMode: false,
     status: this.props.status,
