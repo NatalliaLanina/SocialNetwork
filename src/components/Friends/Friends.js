@@ -15,6 +15,7 @@ let Friends = (props) => {
       <Pagination
         className={friendsClass.pages}
         count={pagesCount}
+        variant="outlined"
         color="primary"
         size={"small"}
         onChange={(event, page) => {

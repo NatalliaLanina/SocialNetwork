@@ -4,11 +4,15 @@ import {Route} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import NavContainer from "./components/Nav/NavContainer";
-import FriendsContainer from "./components/Friends/FriendsContainer";
 import MainContainer from "./components/Main/MainContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import store from "./data/redux-store";
+import React from "react";
+import Preloader from "./components/common/Preloader/Preloader";
+// lazy import of component
+const FriendsContainer = React.lazy(() => import("./components/Friends/FriendsContainer"));
+
 
 function App() {
   return (
@@ -16,18 +20,20 @@ function App() {
       <HeaderContainer store={store}/>
       <NavContainer/>
       <div className="app-wrapper-content">
-        <Route path='/main/:userId?'
-               render={() => <MainContainer/>}/>
-        <Route path='/messages'
-               render={() => <MessagesContainer/>}/>
-        <Route path='/news'
-               render={() => <News/>}/>
-        <Route path='/friends'
-               render={() => <FriendsContainer/>}/>
-        <Route path='/settings'
-               render={() => <Settings/>}/>
-        <Route path='/login'
-               render={() => <Login/>}/>
+        <React.Suspense fallback={<Preloader/>}>
+          <Route path='/main/:userId?'
+                 render={() => <MainContainer/>}/>
+          <Route path='/messages'
+                 render={() => <MessagesContainer/>}/>
+          <Route path='/news'
+                 render={() => <News/>}/>
+          <Route path='/friends'
+                 render={() => <FriendsContainer/>}/>
+          <Route path='/settings'
+                 render={() => <Settings/>}/>
+          <Route path='/login'
+                 render={() => <Login/>}/>
+        </React.Suspense>
       </div>
     </div>
   );
