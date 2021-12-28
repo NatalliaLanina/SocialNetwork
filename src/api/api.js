@@ -49,6 +49,11 @@ export const profileAPI = {
       return response.data
     })
   },
+  saveAvatar(photoFile) {
+    const formData = new FormData();
+    formData.append('image', photoFile)
+    return instance.put(`profile/photo`, formData)
+  }
 }
 
 

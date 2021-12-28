@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const DELETE_POST = 'DELETE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const SET_AVATAR = 'SET_AVATAR';
 
 let initialState = {
   postsData: [
@@ -41,6 +42,11 @@ const mainPageReducer = (state = initialState, action) => {
         ...state,
         postsData: state.postsData.filter(post => post.id !== action.postId),
       };
+    case SET_AVATAR:
+      return {
+        ...state,
+        profile: {...state.profile, photos: {...state.profile.photos, large: action.photos.large}}
+      };
     default:
       return state;
   }
@@ -64,11 +70,19 @@ export const updateStatus = (status) => async (dispatch) => {
   }
 }
 
+export const saveAvatar = (file) => async (dispatch) => {
+  let data = await profileAPI.saveAvatar(file)
+  if (data.resultCode === 0) {
+    dispatch(setAvatar(data.data.photos));
+  }
+}
+
 
 export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
+export const setAvatar = (photos) => ({type: SET_AVATAR, photos});
 
 
 export default mainPageReducer;

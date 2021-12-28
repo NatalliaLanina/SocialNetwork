@@ -7,13 +7,27 @@ function MainInfo(props) {
   if (!props.profile) {
     return <Preloader/>
   }
-
+  const selectAvatar = (event) => {
+    if (event.target.files.length) {
+      props.saveAvatar(event.target.files[0])
+    }
+  }
   return (
     <div className={mainInfoClass.main__logo}>
       <div>
-        <img src={props.profile.photos.small !== null ? props.profile.photos.small : userPhoto} alt="1111"/>
+        <img
+          src={props.profile.photos.large || userPhoto}
+          alt="avatar"
+        />
+        <p>{props.isOwner && <input
+          type={'file'}
+          onChange={selectAvatar}/>}
+        </p>
         <h3>{props.profile.fullName}</h3>
-        <StatusHook status={props.status} updateStatus={props.updateStatus}/>
+        <StatusHook
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
         <p>{props.profile.lookingForAJobDescription}</p>
         <p>{props.profile.contacts.github}</p>
       </div>
