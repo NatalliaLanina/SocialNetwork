@@ -19,16 +19,15 @@ function MainInfo(props) {
           src={props.profile.photos.large || userPhoto}
           alt="avatar"
         />
-        <p>{props.isOwner && <input
-          type={'file'}
-          onChange={selectAvatar}/>}
-        </p>
+
+        <p>{props.isOwner && <input type={'file'} onChange={selectAvatar}/>}</p>
+
         <h3>{props.profile.fullName}</h3>
-        <StatusHook
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
+
+        <StatusHook status={props.status} updateStatus={props.updateStatus}/>
+
         <p>{props.profile.lookingForAJobDescription}</p>
+
         <p>{props.profile.contacts.github}</p>
       </div>
     </div>

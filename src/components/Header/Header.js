@@ -10,7 +10,7 @@ function Header(props) {
         <div className={headClass.header__logo}>
           <img
             className={headClass.logo}
-            src="https://cdn-icons-png.flaticon.com/512/5547/5547473.png"
+            src={"https://cdn-icons-png.flaticon.com/512/5547/5547473.png"}
             alt="logo"/>
         </div>
 
@@ -19,7 +19,9 @@ function Header(props) {
         </div>
 
         <div className={headClass.avatar__container}>
-          <div><img className={headClass.avatar} src={userPhoto} alt="111"/></div>
+          {props.isAuth ? <div><img className={headClass.avatar} src={props.profile.photos.large || userPhoto} alt="111"/></div> :
+            <NavLink to={'/login'}>Login</NavLink>
+          }
           {props.isAuth ? <div>{props.login}
               <div>
                 <button onClick={props.logout}>Log out</button>

@@ -6,6 +6,7 @@ let initialState = {
     {name: 'Max Chub', id: 4, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
     {name: 'Sonya Nov', id: 5, img: 'https://cdn-icons-png.flaticon.com/512/5547/5547473.png'},
   ],
+  avatar: null,
 }
 
 const navReducer = (state = initialState, action) => {
