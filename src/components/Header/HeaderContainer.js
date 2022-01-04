@@ -16,7 +16,6 @@ class HeaderContainer extends React.Component {
       <Header
         {...this.props}
         profile={this.props.profile}
-        authUserId={!this.props.authUserId}
       />
     </>
   }
@@ -25,7 +24,6 @@ class HeaderContainer extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.mainPage.profile,
-    authUserId: state.auth.userId,
     isAuth: state.auth.isAuth,
     login: state.auth.login,
   }

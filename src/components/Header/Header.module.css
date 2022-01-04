@@ -1,3 +1,8 @@
+.main {
+    text-align: center;
+    font-size: 1.5em;
+}
+
 .header {
     grid-area: h;
     background-color: #282c34;
